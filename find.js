@@ -14,6 +14,9 @@ db.world.find(
 ).pretty()
 
 /* 5. List the countries in Europe that come after "S" in the alphabet */
+db.world.find({  name:{'$regex':"^S"},
+                 continent: 'Europe'},
+              {"name":1,"_id":0})
 
 /* 6. Find the name and capital cities for countries with a population of over 70 million */
 db.world.find({population:{$gt: 70000000}}, {name:1, capital:1, _id:0})

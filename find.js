@@ -22,3 +22,45 @@ db.world.find({population:{$gt: 70000000}}, {name:1, capital:1, _id:0})
 db.world.find({$or:[{population: {$gt: 200000000}},
                     {population: {$lt: 20000}}]},
               {name:1,population:1,_id:0})
+
+/* 8. Show the first document of world */
+db.world.findOne()
+
+/* 9. Get the 50th document of world */
+db.world.find()[49]
+db.world.find().skip(49).limit(1)
+
+/* 10. Get all the data concerning france */
+db.world.find({"name":"France"})
+
+/* 11. Get the population of Germany */
+db.world.find({"name":"Germany"},{"population":1,"_id":0})
+
+/* MongoDB also allows comparisons. Syntax:
+Mongo | MySQL
+--------------
+$eq   | == 
+$gt   | >
+$gte  | >=
+$lt   | <
+$lte  | <=
+$ne   | !=, <>
+$in   | IN
+$nin  | NOT IN
+*/
+
+/* 12. List the countries with a population that's less than 1 million. */
+db.world.find({"population":{"$lt":1000000}},{"name":1,"_id":0})
+
+/* 13. Find the countries with less than 1 million people, but over 200000km2 area */
+db.world.find({"population":{"$lt":1000000},"area":{"$gt":200000}},{"name":1,"_id":0})
+
+/* 14. Find the continent of Brazil, the United Kingdom, and Ghana. */
+db.world.find({"population":{"$lt":1000000},"area":{"$gt":200000}},{"name":1,"_id":0})
+
+/* 15. Show each country that begins with G */
+db.world.find({"name": /^G/},{"name":1,"continent":1,"_id":0})
+
+/* 16. Show country name and continent for countries Brazil, United Kingdom or Ghana */
+db.world.find({"name":{"$in":["Brazil","United Kingdom","Ghana"]}},{"name":1,"continent":1,"_id":0})
+

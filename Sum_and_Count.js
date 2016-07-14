@@ -15,7 +15,6 @@ db.world.aggregate([
        "sum of populations":{$sum:"$population"},
        "count of countries":{$sum:1}
    }}
-
 ])
 
 /* 3. Array.sum() */
